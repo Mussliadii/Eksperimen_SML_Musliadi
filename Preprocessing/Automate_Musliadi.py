@@ -26,6 +26,6 @@ if __name__ == "__main__":
     preprocessed_train_df = preprocess(df_train)
     preprocessed_test_df = preprocess(df_test)
 
-    preprocessed_train_df.to_csv("titanic_preprocessed_train.csv", index=False)
-    preprocessed_test_df.to_csv("titanic_preprocessed_test.csv", index=False)
-    print("Preprocessing selesai. Data disimpan sebagai 'titanic_preprocessed_train.csv' dan 'titanic_preprocessed_test.csv'.")
+    preprocessed_train_df.to_csv("Titanic_Preprocessed_Train.csv", index=False)
+    preprocessed_test_df.to_csv("Titanic_Preprocessed_Test.csv", index=False)
+    print("Preprocessing selesai. Data disimpan sebagai 'Titanic_Preprocessed_Train.csv' dan 'Titanic_Preprocessed_Test.csv'.")
