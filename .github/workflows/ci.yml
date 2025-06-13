@@ -27,7 +27,7 @@ jobs:
     - name: Run Preprocessing script
       run: |
         cd Preprocessing
-        python automate_Haldies.py
+        python Automate_Musliadi.py
 
     - name: Configure Git
       run: |
