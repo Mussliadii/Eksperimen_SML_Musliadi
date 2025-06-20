@@ -2,44 +2,47 @@ name: Preprocessing and Modeling CI
 
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - main
   pull_request:
-    branches: [ main ]
+    branches: 
+      - main
 
 jobs:
-  Preprocessing:
+  preprocessing:
+    name: Run Preprocessing Pipeline
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: 🔄 Checkout Repository
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      - name: 🐍 Setup Python Environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-    - name: Install dependencies for Preprocessing
-      run: |
-        python -m pip install --upgrade pip
-        pip install pandas
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
 
-    - name: Run Preprocessing script
-      run: |
-        cd Preprocessing
-        python Automate_Musliadi.py
+      - name: 🚀 Execute Preprocessing Script
+        run: |
+          cd Preprocessing
+          python Automate_Musliadi.py
 
-    - name: Configure Git
-      run: |
-        git config --global user.name "github-actions"
-        git config --global user.email "github-actions@github.com"
+      - name: ⚙️ Configure Git Identity
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
 
-    - name: Commit and push processed data
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        git add . || echo "Nothing to add"
-        git diff --cached --quiet && echo "No changes to commit" || (
-          git commit -m "Update processed dataset by GitHub Actions"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main
-        )
+      - name: 📤 Commit & Push Processed Data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add . || echo "Nothing to add"
+          git diff --cached --quiet && echo "No changes to commit" || (
+            git commit -m "Update processed dataset by GitHub Actions"
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main
+          )
